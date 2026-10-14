@@ -1,48 +1,62 @@
-const MODEL = "gemini-2.5-flash";
-const SYSTEM_INSTRUCTION = `You are DriveReady PH's friendly AI Study Companion for learners preparing for TESDA Driving NC II in the Philippines. Explain clearly and patiently, using simple English or Filipino depending on the learner's language. Help with road signs, defensive driving, vehicle inspection, vehicle controls, road safety, and practice questions. Give one quiz question at a time when asked to quiz. Distinguish general study guidance from official rules. Do not claim your answers are official TESDA exam questions or guarantee passing. Traffic laws, fines, speed limits, and assessment requirements can change; encourage checking current official TESDA/LTO materials or the assessment center for authoritative details. Never encourage unsafe driving. Keep answers practical and reasonably concise.`;
+// Optional AI helper. The rest of the site is static and works without this function.
+const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const MAX_MESSAGES = 12, MAX_CHARS = 2000, LIMIT = 20, WINDOW_MS = 10 * 60 * 1000;
+const hits = new Map(); // best-effort, per warm instance only
 
-export default async (request) => {
-  if (request.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Use POST for study questions." }), { status: 405, headers: { "content-type": "application/json", "allow": "POST" } });
-  }
+const FACTS = `Reference facts (Philippines, checked 2026-10-14; the learner should still confirm with current TESDA/LTO sources):
+- TESDA Driving NC II (Training Regulations promulgated Dec 2004) is project-type; core units: Carry Out Minor Vehicle Maintenance and Servicing; Drive Light Vehicle; Obey and Observe Traffic Rules and Regulations; Implement and Coordinate Accident-Emergency Procedures. Evidence is commonly written test, demonstration, oral questioning; items, time, and passing marks vary by assessment center, so do not state numbers.
+- RA 4136 Sec. 35 maximums for cars/motorcycles: 80 km/h open country roads; 40 km/h designated through streets; 30 km/h city/municipal streets with light traffic; 20 km/h crowded streets, blind-corner intersections, school zones. Posted or local limits may be lower.
+- RA 4136 Sec. 42: vehicle already in the intersection has priority; if two arrive together the left driver yields to the right; unlawful speed forfeits right of way; give way to pedestrians in crosswalks. Overtake on the left (Sec. 39); give way to an overtaking vehicle (Sec. 40).
+- RA 8750: driver and front-seat passengers wear seat belts. RA 11229: children 12 and below need a suitable child restraint and may sit in front only if at least 150 cm and belted. RA 10913 Anti-Distracted Driving; RA 10586 Anti-Drunk and Drugged Driving.
+- Philippine warning signs are yellow triangles with a red border; regulatory signs are mostly red-bordered circles; Stop is a red octagon; Give Way is an inverted triangle.`;
+
+const SYSTEM_INSTRUCTION = `You are the optional AI Study Companion in DriveReady PH, helping learners prepare for TESDA Driving NC II in the Philippines. Explain clearly in simple English or Filipino, matching the learner. Help with road signs, defensive driving, vehicle inspection, controls, road safety, and practice questions; give one quiz question at a time when asked. Use the reference facts below and do not contradict them. If unsure, say so and point to current TESDA, LTO, or the assessment center. Never present answers as official TESDA exam questions or promise a pass. Never encourage unsafe driving. Stay on driving study topics. Keep answers concise.\n\n${FACTS}`;
+
+const json = (body, status = 200, extra = {}) => Response.json(body, { status, headers: { "cache-control": "no-store", ...extra } });
+
+export default async (request, context) => {
+  if (request.method !== "POST") return json({ error: "Use POST for study questions." }, 405, { allow: "POST" });
+  const allowed = process.env.ALLOWED_ORIGIN; // optional, e.g. https://your-site.netlify.app
+  const origin = request.headers.get("origin");
+  if (allowed && origin && origin !== allowed) return json({ error: "Origin not allowed." }, 403);
+
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    return Response.json({ error: "Gemini is not configured yet. Add GEMINI_API_KEY in Netlify environment variables, then redeploy." }, { status: 503 });
-  }
+  if (!apiKey) return json({ error: "The AI Study Companion is not set up yet." }, 503);
+
+  const ip = context?.ip || request.headers.get("x-nf-client-connection-ip") || "unknown", now = Date.now();
+  const recent = (hits.get(ip) || []).filter(t => now - t < WINDOW_MS);
+  if (recent.length >= LIMIT) return json({ error: "Too many questions. Please wait a few minutes." }, 429);
+  recent.push(now); hits.set(ip, recent);
+  if (hits.size > 5000) hits.clear();
+
   let body;
-  try { body = await request.json(); } catch { return Response.json({ error: "Invalid JSON request." }, { status: 400 }); }
-  if (!Array.isArray(body.contents) || body.contents.length < 1 || body.contents.length > 12) {
-    return Response.json({ error: "Send between 1 and 12 conversation messages." }, { status: 400 });
-  }
+  try { body = await request.json(); } catch { return json({ error: "Invalid request." }, 400); }
+  if (!Array.isArray(body.contents) || !body.contents.length || body.contents.length > MAX_MESSAGES) return json({ error: `Send 1 to ${MAX_MESSAGES} messages.` }, 400);
+
   const contents = [];
   for (const item of body.contents) {
     if (!item || !["user", "model"].includes(item.role) || !Array.isArray(item.parts)) continue;
-    const text = item.parts.map(p => typeof p?.text === "string" ? p.text : "").join("\n").trim();
-    if (text && text.length <= 2000) contents.push({ role: item.role, parts: [{ text }] });
+    const text = item.parts.map(p => typeof p?.text === "string" ? p.text : "").join("\n").trim().slice(0, MAX_CHARS);
+    if (!text) continue;
+    if (!contents.length && item.role !== "user") continue; // Gemini needs a user turn first
+    const last = contents[contents.length - 1];
+    if (last && last.role === item.role) last.parts[0].text += "\n" + text; else contents.push({ role: item.role, parts: [{ text }] });
   }
-  if (!contents.length || contents[contents.length - 1].role !== "user") {
-    return Response.json({ error: "Please enter a study question." }, { status: 400 });
-  }
+  if (!contents.length || contents[contents.length - 1].role !== "user") return json({ error: "Please enter a study question." }, 400);
+
   try {
     const upstream = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
       method: "POST",
       headers: { "content-type": "application/json", "x-goog-api-key": apiKey },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] },
-        contents,
-        generationConfig: { temperature: 0.5, maxOutputTokens: 900 }
-      }),
+      body: JSON.stringify({ systemInstruction: { parts: [{ text: SYSTEM_INSTRUCTION }] }, contents, generationConfig: { temperature: 0.4, maxOutputTokens: 900 } }),
       signal: AbortSignal.timeout(25000)
     });
     const result = await upstream.json().catch(() => ({}));
-    if (!upstream.ok) {
-      const message = upstream.status === 429 ? "Gemini rate limit or quota reached. Please wait and try again." : upstream.status === 401 || upstream.status === 403 ? "Gemini rejected the API key. Check that the key is valid and Gemini API access is enabled." : "Gemini request failed. Please try again later.";
-      return Response.json({ error: message }, { status: upstream.status === 429 ? 429 : 502 });
-    }
+    if (!upstream.ok) return json({ error: upstream.status === 429 ? "The AI is busy right now. Please try again shortly." : "The AI could not answer right now. Please try again later." }, upstream.status === 429 ? 429 : 502);
     const reply = (result.candidates?.[0]?.content?.parts || []).map(p => p.text || "").join("\n").trim();
-    if (!reply) return Response.json({ error: "Gemini returned an empty answer. Please try again." }, { status: 502 });
-    return Response.json({ reply }, { headers: { "cache-control": "no-store" } });
-  } catch (error) {
-    return Response.json({ error: "Could not reach Gemini. Check the network and try again." }, { status: 502 });
+    if (!reply) return json({ error: "The AI returned an empty answer. Please try again." }, 502);
+    return json({ reply });
+  } catch {
+    return json({ error: "Could not reach the AI service. Please try again." }, 502);
   }
 };
