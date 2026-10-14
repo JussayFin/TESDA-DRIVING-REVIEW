@@ -1,0 +1,58 @@
+:root{--bg:#f1f2f4;--c:#fff;--ink:#111;--mu:#6b7280;--ln:#e5e7eb;--ac:#2563eb;--ok:#15803d;--bad:#b91c1c;--sh:0 2px 10px rgba(0,0,0,.06)}
+[data-dark="1"]{--bg:#0f1115;--c:#1a1d23;--ink:#f3f4f6;--mu:#9ca3af;--ln:#2b2f38;--ac:#60a5fa;--ok:#4ade80;--bad:#f87171;--sh:none}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);display:grid;grid-template:"h h" 60px "s m" 1fr/208px 1fr;min-height:100vh}
+body.min{grid-template-columns:64px 1fr}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.top{grid-area:h;display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--c);border-bottom:1px solid var(--ln);position:sticky;top:0;z-index:5}
+.top button{background:none;border:0;font-size:20px;padding:6px}
+.logo{white-space:nowrap}
+#q{flex:1;min-width:0;max-width:420px;padding:8px 14px;border:1px solid var(--ln);border-radius:20px;background:var(--bg);color:var(--ink)}
+.pill{background:var(--bg);border:1px solid var(--ln);border-radius:20px;padding:2px 10px;font-size:14px;white-space:nowrap}
+.side{grid-area:s;background:var(--c);border-right:1px solid var(--ln);padding:10px 8px;display:flex;flex-direction:column;gap:2px}
+.side button{display:flex;gap:10px;align-items:center;background:none;border:0;border-radius:10px;padding:10px;text-align:left}
+.side button.on{background:var(--ink);color:var(--bg)}
+.side em{font-style:normal}
+body.min .side em{display:none}
+main{grid-area:m;padding:20px;width:100%;max-width:1040px;min-width:0}
+h1,h2,h3{line-height:1.25;margin:0 0 10px}
+.card{background:var(--c);border-radius:16px;box-shadow:var(--sh);border:1px solid var(--ln);padding:18px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.grid .card{margin:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:9px 16px;font-weight:600}
+.btn.gh{background:none;color:var(--ink);border:1px solid var(--ln)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.bar{height:8px;background:var(--ln);border-radius:8px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--ac)}
+.mu{color:var(--mu)}.sm{font-size:14px}
+.big{font-size:2rem;font-weight:700;margin:4px 0}
+.ex{background:var(--bg);border-left:4px solid var(--ac);padding:10px 14px;border-radius:8px;margin-top:12px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;background:var(--c);border:1px solid var(--ln);border-radius:10px;padding:12px}
+.opt.sel{border-color:var(--ac);background:var(--bg)}
+.opt.ok{border-color:var(--ok);background:rgba(34,197,94,.12)}
+.opt.bad{border-color:var(--bad);background:rgba(239,68,68,.12)}
+.qt{font-size:1.1rem;font-weight:600}
+.fb{padding:10px 14px;border-radius:10px;margin-top:10px;background:var(--bg)}
+.fb.g{border-left:4px solid var(--ok)}.fb.r{border-left:4px solid var(--bad)}
+.rev{border-top:1px solid var(--ln);padding:10px 0}.rev p{margin:4px 0}
+.gt{color:var(--ok)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tabs .on{background:var(--ink);color:var(--bg)}
+.sg svg{width:64px;height:64px;float:left;margin-right:12px;border-radius:8px}
+.sg:after{content:"";display:block;clear:both}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+.chk input{width:20px;height:20px;margin-top:2px;accent-color:var(--ac)}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:6px;border-bottom:1px solid var(--ln)}
+a{color:var(--ac)}
+@media(max-width:760px){
+body,body.min{grid-template:"h" 60px "m" 1fr/1fr}
+#tg,.pill{display:none}
+.side{position:fixed;left:0;right:0;bottom:0;top:auto;flex-direction:row;overflow-x:auto;border-right:0;border-top:1px solid var(--ln);z-index:6;padding:4px}
+.side button{flex-direction:column;gap:0;padding:6px 10px;font-size:11px;min-width:64px;align-items:center}
+body.min .side em{display:inline}
+main{padding:14px 14px 90px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
