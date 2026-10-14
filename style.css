@@ -67,46 +67,7 @@ main{padding:18px 14px 110px}
 /* Flashcards and mobile refinements */
 .flashface{min-height:210px;display:flex;flex-direction:column;justify-content:center;padding:20px 6px}.flashface h2{font-size:clamp(1.25rem,3vw,1.8rem);margin:8px 0}.flashcard{max-width:760px}.side button{white-space:nowrap}.sg{min-height:126px}.sg b{display:block;margin-top:4px}.sg p{margin:6px 0 0}
 @media(max-width:480px){.top{gap:6px;padding:0 8px}.logo{font-size:14px}#q{padding:7px 9px;font-size:14px}.top button{font-size:17px;padding:4px}.card{padding:14px;border-radius:13px}.grid{grid-template-columns:1fr}.btn{padding:9px 12px}.flashface{min-height:180px}}
- every area; check the blind spot before moving." ]
-],
-[
-["A tire has a visible bulge. What should you do?",["Ignore it until the next service", "Avoid driving on it and arrange a safe repair or replacement", "Inflate it beyond the recommended pressure", "Drive faster to test it"],1,"A bulge can indicate tire damage and risk of failure."],
-["Where should you find the recommended tire pressure?",["A random online comment", "The vehicle manual or manufacturer label", "The tire's color", "The radio display"],1,"Use the manufacturer's recommended pressure, typically listed in the manual or vehicle label." ]
-],
-[
-["What should you do if a dashboard warning light appears while driving?",["Ignore every warning light", "Assess the warning, stop safely if needed, and consult the manual", "Cover the light", "Accelerate"],1,"Warning meanings differ; follow the vehicle manual and stop safely for serious warnings."],
-["Before using a vehicle you are unfamiliar with, you should...",["Start driving immediately", "Locate the controls and understand the vehicle's operating instructions", "Disable the mirrors", "Guess which pedal is the brake"],1,"Familiarize yourself with controls before moving." ]
-],
-[
-["When approaching a blind corner, you should...",["Speed up to clear it", "Slow down and keep to your side of the road", "Overtake without looking", "Drive in the center"],1,"Reduce speed and maintain lane position when visibility is limited."],
-["When parking on a slope, what matters most?",["Leaving the vehicle in neutral only", "Securing the vehicle with the parking brake and the correct gear/park setting", "Leaving the engine running", "Turning off all safety systems"],1,"Secure the vehicle and follow the vehicle manual and instructor's guidance for slope parking." ]
-],
-[
-["You need to change lanes in heavy traffic. You should...",["Force your way in", "Signal, check mirrors and blind spot, and move only when a safe gap exists", "Turn without signaling", "Look only at the dashboard"],1,"Signal and observe; never force a lane change."],
-["If an intersection is blocked by traffic ahead, you should...",["Enter and block cross traffic", "Wait before the intersection until there is room to clear it", "Use the opposite lane", "Follow the vehicle in front regardless"],1,"Do not enter an intersection unless you can proceed without blocking it." ]
-],
-[
-["What should you do if the vehicle begins to skid?",["Make abrupt steering inputs", "Ease off the accelerator and steer smoothly toward the intended path", "Accelerate hard", "Close your eyes"],1,"Avoid sudden actions; follow your instructor's guidance for the vehicle and conditions."],
-["When should you use headlights?",["Only when you want other drivers to move", "When visibility or conditions require them, and as required by law", "Never in rain", "Only on empty roads"],1,"Use lights to see and be seen in low visibility and as required by law." ]
-],
-[
-["If you miss a turn, the safest choice is to...",["Reverse in traffic", "Continue safely and find a legal place to turn around", "Turn suddenly across lanes", "Stop in the travel lane"],1,"Never make a sudden or unsafe maneuver; reroute safely."],
-["During a practical assessment, if you are unsure of an instruction, you should...",["Guess and act immediately", "Ask the assessor to repeat or clarify it before proceeding", "Ignore the instruction", "Drive faster"],1,"Clarifying an instruction is safer than guessing." ]
-]
-];
-M.forEach((m,i)=>{ if(EXTRA[i]) m.q.push(...EXTRA[i]); });
-
-const C=[
-["Documents and preparation",["Bring valid ID and the requirements from your center","Wear closed shoes and comfortable clothes","Rest well and arrive early"]],
-["Pre-driving safety checks",["Walk around the vehicle","Check tires, lights, and leaks","Check oil, coolant, brake fluid, and fuel"]],
-["Seat, mirror, and seatbelt",["Adjust the seat to reach the pedals","Adjust inside and side mirrors","Fasten the seatbelt"]],
-["Controls and instruments",["Check gear selector and handbrake","Check horn, wipers, and lights","Check dashboard warning lights"]],
-["Safe starting and stopping",["Check surroundings before moving","Move off smoothly","Brake early and smoothly"]],
-["Signaling and observation",["Signal before turning or changing lanes","Check mirrors and blind spots","Scan ahead continuously"]],
-["Turning, reversing, parking",["Slow down before turns","Reverse while looking behind","Park straight and secure the vehicle"]],
-["Defensive driving and compliance",["Obey signs and signals","Keep a safe distance","Yield correctly"]],
-["Shutdown and post-driving",["Apply handbrake, select P or neutral","Engine off, lights off","Take belongings and lock the vehicle"]]];
-const lite=(a,b,c)=>`<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="18" y="4" width="24" height="52" rx="6" fill="#222"/><circle cx="30" cy="16" r="7" fill="${a}"/><circle cx="30" cy="30" r="7" fill="${b}"/><circle cx="30" cy="44" r="7" fill="${c}"/></svg>`;
+(a,b,c)=>`<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="18" y="4" width="24" height="52" rx="6" fill="#222"/><circle cx="30" cy="16" r="7" fill="${a}"/><circle cx="30" cy="30" r="7" fill="${b}"/><circle cx="30" cy="44" r="7" fill="${c}"/></svg>`;
 const ln=x=>`<svg viewBox="0 0 60 60" aria-hidden="true"><rect width="60" height="60" fill="#555"/>${x}</svg>`;
 const SG={
 stop:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="18,4 42,4 56,18 56,42 42,56 18,56 4,42 4,18" fill="#c0392b"/><text x="30" y="35" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">STOP</text></svg>',
