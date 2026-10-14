@@ -67,41 +67,49 @@ main{padding:18px 14px 110px}
 /* Flashcards and mobile refinements */
 .flashface{min-height:210px;display:flex;flex-direction:column;justify-content:center;padding:20px 6px}.flashface h2{font-size:clamp(1.25rem,3vw,1.8rem);margin:8px 0}.flashcard{max-width:760px}.side button{white-space:nowrap}.sg{min-height:126px}.sg b{display:block;margin-top:4px}.sg p{margin:6px 0 0}
 @media(max-width:480px){.top{gap:6px;padding:0 8px}.logo{font-size:14px}#q{padding:7px 9px;font-size:14px}.top button{font-size:17px;padding:4px}.card{padding:14px;border-radius:13px}.grid{grid-template-columns:1fr}.btn{padding:9px 12px}.flashface{min-height:180px}}
-(a,b,c)=>`<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="18" y="4" width="24" height="52" rx="6" fill="#222"/><circle cx="30" cy="16" r="7" fill="${a}"/><circle cx="30" cy="30" r="7" fill="${b}"/><circle cx="30" cy="44" r="7" fill="${c}"/></svg>`;
-const ln=x=>`<svg viewBox="0 0 60 60" aria-hidden="true"><rect width="60" height="60" fill="#555"/>${x}</svg>`;
-const SG={
-stop:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="18,4 42,4 56,18 56,42 42,56 18,56 4,42 4,18" fill="#c0392b"/><text x="30" y="35" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">STOP</text></svg>',
-give:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="6,8 54,8 30,52" fill="#fff" stroke="#c0392b" stroke-width="6" stroke-linejoin="round"/></svg>',
-noent:'<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="#c0392b"/><rect x="14" y="25" width="32" height="10" fill="#fff"/></svg>',
-speed:'<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="25" fill="#fff" stroke="#c0392b" stroke-width="6"/><text x="30" y="36" font-size="18" font-weight="700" text-anchor="middle" fill="#111">60</text></svg>',
-warn:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><text x="30" y="38" font-size="22" font-weight="700" text-anchor="middle" fill="#111">!</text></svg>',
-curve:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M24 45 V30 Q24 20 35 20 H39" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round"/></svg>',
-ped:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><circle cx="30" cy="19" r="4" fill="#111"/><path d="M30 24 L26 34 L35 36 M27 31 L20 35 M29 34 L25 43 M31 34 L39 42" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/></svg>',
-slip:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M17 23 H42 M20 29 H39 M17 35 H42 M22 41 H38" stroke="#111" stroke-width="2.5"/><path d="M31 18 L27 25 L33 30 L28 37" fill="none" stroke="#111" stroke-width="3"/></svg>',
-inter:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M26 14 V46 M14 30 H46" stroke="#111" stroke-width="4"/></svg>',
-info:'<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="6" y="10" width="48" height="40" rx="4" fill="#1d4ed8"/><text x="30" y="38" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">i</text></svg>',
-red:lite("#e53935","#555","#555"),yel:lite("#555","#fbc02d","#555"),grn:lite("#555","#555","#43a047"),
-dash:ln('<line x1="30" y1="2" x2="30" y2="58" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>'),
-solid:ln('<line x1="30" y1="0" x2="30" y2="60" stroke="#fff" stroke-width="4"/>'),
-dbl:ln('<line x1="26" y1="0" x2="26" y2="60" stroke="#f4c20d" stroke-width="4"/><line x1="34" y1="0" x2="34" y2="60" stroke="#f4c20d" stroke-width="4"/>'),
-cross:ln([6,16,26,36,46].map(x=>`<rect x="${x}" y="8" width="6" height="44" fill="#fff"/>`).join(''))};
-const SIGNS=[
-["Regulatory","Stop","stop","Come to a complete stop, look, and go only when it is safe."],
-["Regulatory","Give way","give","Slow down and yield to traffic that has the right of way."],
-["Regulatory","No entry","noent","Vehicles may not enter this road or lane."],
-["Regulatory","Speed limit","speed","The number is the maximum speed in km/h."],
-["Warning","Curve ahead","curve","Slow down before the bend and keep to your lane."],
-["Warning","Pedestrian crossing","ped","Expect people crossing. Be ready to stop."],
-["Warning","Slippery road","slip","Reduce speed and avoid hard braking."],
-["Warning","Intersection ahead","inter","Prepare to slow down and watch cross traffic."],
-["Informative","Hospital","info","Shows a hospital nearby. Give way to ambulances."],
-["Informative","Parking","info","Shows where parking is allowed. Read any time or vehicle limits."],
-["Informative","Direction sign","info","Guides you to towns, roads, or places and shows distances."],
-["Traffic signals","Red light","red","Stop behind the stop line."],
-["Traffic signals","Yellow light","yel","Prepare to stop. Do not speed up to beat the red."],
-["Traffic signals","Green light","grn","Go only if the intersection is clear."],
-["Pavement markings","Broken white line","dash","Separates lanes in the same direction. Change lanes only when safe."],
-["Pavement markings","Solid white line","solid","Stay in your lane and avoid changing lanes."],
+
+/* Modern, clean navigation */
+.top{height:68px;gap:12px;padding:0 22px;border-bottom:1px solid var(--ln);box-shadow:0 2px 12px rgba(0,0,0,.035)}
+.logo{font-size:19px;letter-spacing:-.45px}
+#q{border-radius:14px;max-width:520px;padding:10px 15px}
+.top button{border-radius:12px;transition:background .18s ease}
+.top button:hover{background:var(--bg)}
+.side{padding:18px 12px;gap:5px;border-right:1px solid var(--ln);background:var(--c)}
+.side button{width:100%;gap:12px;min-height:46px;padding:11px 14px;border-radius:12px;color:var(--mu);font-weight:550;transition:background .18s ease,color .18s ease}
+.side button span{width:23px;display:inline-flex;justify-content:center;font-size:18px;filter:grayscale(1)}
+.side button em{font-style:normal;font-size:14px}
+.side button:hover{background:var(--bg);color:var(--ink)}
+.side button.on,.side button.on:hover{background:var(--ink);color:var(--bg);border-radius:12px}
+.side button.on span{filter:none}
+main{padding:28px clamp(16px,3vw,36px);max-width:1200px}
+.card{border-radius:18px;padding:22px;border-color:var(--ln);box-shadow:0 2px 8px rgba(0,0,0,.025)}
+.btn{border-radius:12px;transition:transform .15s ease,opacity .15s ease}
+.btn:hover{opacity:.88}
+.opt{border-radius:12px}
+@media(max-width:760px){
+ body,body.min{grid-template:"h" 62px "m" 1fr/1fr}
+ .top{height:62px;padding:0 12px;gap:8px}
+ .logo{font-size:16px;letter-spacing:-.3px}
+ #q{border-radius:12px;padding:8px 10px;font-size:14px}
+ .side{position:fixed;left:10px;right:10px;bottom:calc(8px + env(safe-area-inset-bottom));top:auto;display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;overflow-x:auto;overflow-y:hidden;white-space:nowrap;border:1px solid var(--ln);border-radius:20px;padding:7px 8px;background:var(--c);box-shadow:0 8px 30px rgba(0,0,0,.10);gap:3px;z-index:20;scrollbar-width:none}
+ .side::-webkit-scrollbar{display:none}
+ .side button{flex:1 0 62px;width:auto;min-width:62px;min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 4px;border-radius:13px;font-weight:500;color:var(--mu)}
+ .side button span{font-size:18px;width:auto;line-height:1.2}
+ .side button em{display:block!important;font-size:10px;line-height:1.2;letter-spacing:-.15px}
+ .side button.on,.side button.on:hover{border-radius:13px;background:var(--ink);color:var(--bg)}
+ body.min .side em{display:block}
+ main{padding:18px 13px calc(100px + env(safe-area-inset-bottom))}
+ .card{padding:16px;border-radius:16px}
+}
+@media(max-width:390px){
+ .logo{font-size:14px}
+ .top{gap:5px;padding:0 8px}
+ #q{font-size:12px;min-width:70px;padding:7px 8px}
+ .side button{flex-basis:56px;min-width:56px}
+ .side button em{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.top button,.side button,.btn{transition:none}}
+s."],
 ["Pavement markings","Double solid yellow line","dbl","Separates opposing traffic. Do not overtake or cross."],
 ["Pavement markings","Pedestrian crossing","cross","Give way to pedestrians. Do not stop on the crosswalk."]];
 const CATS=["Regulatory","Warning","Informative","Traffic signals","Pavement markings"];
