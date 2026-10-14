@@ -62,6 +62,47 @@ const M=[
 ["Which shows good practical driving habits?", ["Smooth control and constant observation", "Fast driving", "Ignoring signals", "Skipping checks"], 0, "Safe, smooth, observant driving is what matters."],
 ["If you stall during the practical you should...", ["Stay calm, secure the car, and restart safely", "Panic", "Leave the car", "Hit the accelerator"], 0, "Set the handbrake, check surroundings, then restart."]]}
 ];
+// Supplemental original practice questions. These are study aids, not official exam items.
+const EXTRA=[
+[
+["What should you do if an instruction from another road user conflicts with a traffic sign?",["Follow the other road user", "Obey the applicable sign and law, proceeding safely", "Ignore both", "Stop permanently"],1,"Follow applicable traffic controls and proceed safely; seek clarification from an authorized instructor when learning."],
+["Before a long drive, what is a sensible preparation?",["Skip the vehicle check", "Plan the route, rest, and inspect the vehicle", "Drive until tired", "Rely only on the fuel gauge"],1,"Plan ahead, be rested, and inspect the vehicle before leaving."]
+],
+[
+["At a STOP sign, when may you proceed?",["After slowing slightly", "After a complete stop and checking that it is safe", "If the road looks empty from far away", "Only after honking"],1,"Come to a complete stop, observe, and proceed only when safe."],
+["A traffic enforcer directs you differently from a traffic light. What is the safest action?",["Ignore the enforcer", "Follow the authorized enforcer's direction safely", "Follow whichever is faster", "Close your eyes and proceed"],1,"Authorized traffic directions should be followed safely." ]
+],
+[
+["Why should you leave an escape space around your vehicle?",["To encourage others to cut in", "To give yourself room to react to hazards", "To drive faster", "To avoid checking mirrors"],1,"Space around the vehicle gives you options if traffic changes suddenly."],
+["A motorcycle is in your blind spot. Before changing lanes, you should...",["Move immediately", "Check the blind spot and wait until the lane is clear", "Flash high beams and move", "Rely only on the rear-view mirror"],1,"Mirrors do not show every area; check the blind spot before moving." ]
+],
+[
+["A tire has a visible bulge. What should you do?",["Ignore it until the next service", "Avoid driving on it and arrange a safe repair or replacement", "Inflate it beyond the recommended pressure", "Drive faster to test it"],1,"A bulge can indicate tire damage and risk of failure."],
+["Where should you find the recommended tire pressure?",["A random online comment", "The vehicle manual or manufacturer label", "The tire's color", "The radio display"],1,"Use the manufacturer's recommended pressure, typically listed in the manual or vehicle label." ]
+],
+[
+["What should you do if a dashboard warning light appears while driving?",["Ignore every warning light", "Assess the warning, stop safely if needed, and consult the manual", "Cover the light", "Accelerate"],1,"Warning meanings differ; follow the vehicle manual and stop safely for serious warnings."],
+["Before using a vehicle you are unfamiliar with, you should...",["Start driving immediately", "Locate the controls and understand the vehicle's operating instructions", "Disable the mirrors", "Guess which pedal is the brake"],1,"Familiarize yourself with controls before moving." ]
+],
+[
+["When approaching a blind corner, you should...",["Speed up to clear it", "Slow down and keep to your side of the road", "Overtake without looking", "Drive in the center"],1,"Reduce speed and maintain lane position when visibility is limited."],
+["When parking on a slope, what matters most?",["Leaving the vehicle in neutral only", "Securing the vehicle with the parking brake and the correct gear/park setting", "Leaving the engine running", "Turning off all safety systems"],1,"Secure the vehicle and follow the vehicle manual and instructor's guidance for slope parking." ]
+],
+[
+["You need to change lanes in heavy traffic. You should...",["Force your way in", "Signal, check mirrors and blind spot, and move only when a safe gap exists", "Turn without signaling", "Look only at the dashboard"],1,"Signal and observe; never force a lane change."],
+["If an intersection is blocked by traffic ahead, you should...",["Enter and block cross traffic", "Wait before the intersection until there is room to clear it", "Use the opposite lane", "Follow the vehicle in front regardless"],1,"Do not enter an intersection unless you can proceed without blocking it." ]
+],
+[
+["What should you do if the vehicle begins to skid?",["Make abrupt steering inputs", "Ease off the accelerator and steer smoothly toward the intended path", "Accelerate hard", "Close your eyes"],1,"Avoid sudden actions; follow your instructor's guidance for the vehicle and conditions."],
+["When should you use headlights?",["Only when you want other drivers to move", "When visibility or conditions require them, and as required by law", "Never in rain", "Only on empty roads"],1,"Use lights to see and be seen in low visibility and as required by law." ]
+],
+[
+["If you miss a turn, the safest choice is to...",["Reverse in traffic", "Continue safely and find a legal place to turn around", "Turn suddenly across lanes", "Stop in the travel lane"],1,"Never make a sudden or unsafe maneuver; reroute safely."],
+["During a practical assessment, if you are unsure of an instruction, you should...",["Guess and act immediately", "Ask the assessor to repeat or clarify it before proceeding", "Ignore the instruction", "Drive faster"],1,"Clarifying an instruction is safer than guessing." ]
+]
+];
+M.forEach((m,i)=>{ if(EXTRA[i]) m.q.push(...EXTRA[i]); });
+
 const C=[
 ["Documents and preparation",["Bring valid ID and the requirements from your center","Wear closed shoes and comfortable clothes","Rest well and arrive early"]],
 ["Pre-driving safety checks",["Walk around the vehicle","Check tires, lights, and leaks","Check oil, coolant, brake fluid, and fuel"]],
@@ -80,6 +121,10 @@ give:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="6,8 54,8 30,5
 noent:'<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="26" fill="#c0392b"/><rect x="14" y="25" width="32" height="10" fill="#fff"/></svg>',
 speed:'<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="25" fill="#fff" stroke="#c0392b" stroke-width="6"/><text x="30" y="36" font-size="18" font-weight="700" text-anchor="middle" fill="#111">60</text></svg>',
 warn:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><text x="30" y="38" font-size="22" font-weight="700" text-anchor="middle" fill="#111">!</text></svg>',
+curve:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M24 45 V30 Q24 20 35 20 H39" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round"/></svg>',
+ped:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><circle cx="30" cy="19" r="4" fill="#111"/><path d="M30 24 L26 34 L35 36 M27 31 L20 35 M29 34 L25 43 M31 34 L39 42" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/></svg>',
+slip:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M17 23 H42 M20 29 H39 M17 35 H42 M22 41 H38" stroke="#111" stroke-width="2.5"/><path d="M31 18 L27 25 L33 30 L28 37" fill="none" stroke="#111" stroke-width="3"/></svg>',
+inter:'<svg viewBox="0 0 60 60" aria-hidden="true"><polygon points="30,3 57,30 30,57 3,30" fill="#f4c20d" stroke="#111" stroke-width="3"/><path d="M26 14 V46 M14 30 H46" stroke="#111" stroke-width="4"/></svg>',
 info:'<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="6" y="10" width="48" height="40" rx="4" fill="#1d4ed8"/><text x="30" y="38" font-size="22" font-weight="700" fill="#fff" text-anchor="middle">i</text></svg>',
 red:lite("#e53935","#555","#555"),yel:lite("#555","#fbc02d","#555"),grn:lite("#555","#555","#43a047"),
 dash:ln('<line x1="30" y1="2" x2="30" y2="58" stroke="#fff" stroke-width="4" stroke-dasharray="10 8"/>'),
@@ -91,10 +136,10 @@ const SIGNS=[
 ["Regulatory","Give way","give","Slow down and yield to traffic that has the right of way."],
 ["Regulatory","No entry","noent","Vehicles may not enter this road or lane."],
 ["Regulatory","Speed limit","speed","The number is the maximum speed in km/h."],
-["Warning","Curve ahead","warn","Slow down before the bend and keep to your lane."],
-["Warning","Pedestrian crossing","warn","Expect people crossing. Be ready to stop."],
-["Warning","Slippery road","warn","Reduce speed and avoid hard braking."],
-["Warning","Intersection ahead","warn","Prepare to slow down and watch cross traffic."],
+["Warning","Curve ahead","curve","Slow down before the bend and keep to your lane."],
+["Warning","Pedestrian crossing","ped","Expect people crossing. Be ready to stop."],
+["Warning","Slippery road","slip","Reduce speed and avoid hard braking."],
+["Warning","Intersection ahead","inter","Prepare to slow down and watch cross traffic."],
 ["Informative","Hospital","info","Shows a hospital nearby. Give way to ambulances."],
 ["Informative","Parking","info","Shows where parking is allowed. Read any time or vehicle limits."],
 ["Informative","Direction sign","info","Guides you to towns, roads, or places and shows distances."],
@@ -109,11 +154,11 @@ const CATS=["Regulatory","Warning","Informative","Traffic signals","Pavement mar
 
 /* ===== STATE ===== */
 const $=s=>document.querySelector(s),K='tesdaNC2';
-let S={done:{},bm:{},qb:{},sc:[],st:{},ck:{},goal:2,td:{d:'',n:0},dm:0};
+let S={done:{},bm:{},qb:{},sc:[],st:{},ck:{},goal:2,td:{d:'',n:0},dm:0,lastMod:0};
 try{Object.assign(S,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){}
 const bar=p=>`<div class="bar" role="progressbar" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></div>`;
 const nDone=()=>M.filter((m,i)=>S.done[i]).length,pct=()=>Math.round(nDone()/M.length*100);
-const today=()=>new Date().toISOString().slice(0,10);
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const nChk=()=>C.reduce((a,s,i)=>a+s[1].filter((x,j)=>S.ck[i+'-'+j]).length,0),tChk=C.reduce((a,s)=>a+s[1].length,0);
 function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}hdr();if(Z){Z.end?res():rQ()}else go(cur,arg)}
 function hdr(){$('#hp').textContent=pct()+'%';document.documentElement.dataset.dark=S.dm?1:0}
@@ -122,15 +167,15 @@ const allQ=()=>M.flatMap((m,i)=>m.q.map((q,j)=>({id:i+'-'+j,m:i,t:q[0],o:q[1],a:
 const qById=id=>allQ().find(q=>q.id==id);
 
 /* ===== NAVIGATION ===== */
-const NAV=[["home","🏠","Dashboard"],["mods","📚","Modules"],["prac","📝","Practice"],["mock","⏱","Mock exam"],["chk","✅","Practical"],["sign","🛑","Road signs"],["prog","📊","Progress"],["src","🔗","Sources"]];
-let cur="home",arg=null,Z=null,T=null,onlyBm=false,tab=CATS[0];
+const NAV=[["home","🏠","Dashboard"],["mods","📚","Modules"],["prac","📝","Practice"],["mock","⏱","Mock exam"],["chk","✅","Practical"],["sign","🛑","Road signs"],["prog","📊","Progress"],["flash","🃏","Flashcards"],["src","🔗","Sources"]];
+let cur="home",arg=null,Z=null,T=null,onlyBm=false,tab=CATS[0],flashIndex=0,flashFlip=false;
 function nav(x){$('#nav').innerHTML=NAV.map(n=>`<button class="${n[0]==x?'on':''}" aria-label="${n[2]}" onclick="go('${n[0]}')"><span aria-hidden="true">${n[1]}</span><em>${n[2]}</em></button>`).join('')}
-function go(v,a){clearInterval(T);Z=null;cur=v;arg=a;nav(v=='mod'?'mods':v);$('#v').innerHTML=R[v](a);hdr()}
+function go(v,a){clearInterval(T);Z=null;cur=v;arg=a;if(v==='mod'&&Number.isInteger(a)&&M[a]){S.lastMod=a;try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}nav(v=='mod'?'mods':v);$('#v').innerHTML=R[v](a);hdr()}
 const link=(v,a,t,c)=>`<button class="btn ${c||''}" onclick="go('${v}'${a!==undefined?','+a:''})">${t}</button>`;
 const stat=(t,b,p,btn)=>`<div class="card"><h3>${t}</h3><p class="mu">${b}</p>${p!==undefined?bar(p):''}<div class="row">${btn}</div></div>`;
 
 const R={
-home(){const nx=M.findIndex((m,i)=>!S.done[i]),td=S.td.d==today()?S.td.n:0,gp=Math.min(100,Math.round(td/S.goal*100));
+home(){const first=M.findIndex((m,i)=>!S.done[i]),last=Number.isInteger(S.lastMod)&&M[S.lastMod]&&!S.done[S.lastMod]?S.lastMod:-1,nx=last>=0?last:first,td=S.td.d==today()?S.td.n:0,gp=Math.min(100,Math.round(td/S.goal*100));
 return `<h1>Welcome back</h1><p class="mu">Unofficial study companion for TESDA Driving NC II. Not affiliated with TESDA or LTO.</p><div class="grid">
 ${stat("Continue Learning",nx<0?"All modules completed. Review with a mock exam.":`Next: Module ${nx+1}, ${M[nx].t}`,pct(),nx<0?link('mock',undefined,'Start mock exam'):link('mod',nx,'Continue'))}
 ${stat("Study Modules",`${nDone()} done, ${M.length-nDone()} remaining`,pct(),link('mods',undefined,'Open modules'))}
@@ -141,19 +186,21 @@ ${stat("Progress","Scores, bookmarks, and topics to improve.",undefined,link('pr
 mods(){const l=M.map((m,i)=>[m,i]).filter(x=>!onlyBm||S.bm[x[1]]);
 return `<h1>Study modules</h1><div class="row"><label><input type="checkbox" ${onlyBm?'checked':''} onchange="onlyBm=this.checked;go('mods')"> Show bookmarked only</label></div><div class="grid" style="margin-top:12px">${l.map(([m,i])=>`<div class="card"><h3>${S.bm[i]?'★ ':''}Module ${i+1}</h3><p><b>${m.t}</b></p><p class="mu sm">${S.done[i]?'✓ Completed':'Not completed'}</p><div class="row">${link('mod',i,'Open')}</div></div>`).join('')||'<p class="mu">No bookmarked modules yet.</p>'}</div>`},
 mod(i){const m=M[i];return `${link('mods',undefined,'← All modules','gh')}<section class="card" style="margin-top:12px"><h2>Module ${i+1}: ${m.t}</h2><p>${m.s}</p><h3>Key takeaways</h3><ul>${m.n.map(x=>`<li>${x}</li>`).join('')}</ul><div class="ex"><b>Philippine example:</b> ${m.e}</div><div class="row"><button class="btn" onclick="mark(${i})">${S.done[i]?'✓ Completed (undo)':'Mark as completed'}</button><button class="btn gh" onclick="bmod(${i})">${S.bm[i]?'★ Bookmarked':'☆ Bookmark'}</button><button class="btn gh" onclick="qm(${i})">Take quiz (${m.q.length} questions)</button></div></section><div class="row">${i>0?link('mod',i-1,'← Previous','gh'):''}${i<M.length-1?link('mod',i+1,'Next →','gh'):''}</div>`},
-prac(){return `<section class="card"><h1>Practice exam</h1><p>10 random multiple-choice questions with instant feedback and explanations.</p><p class="mu sm">Unofficial practice questions. They are not actual TESDA exam items and do not guarantee passing.</p><div class="row"><button class="btn" onclick="startQ({k:'Practice',nav:'prac',fb:1,gen:()=>shuffle(allQ()).slice(0,10)})">Start practice</button></div></section>`},
+prac(){return `<section class="card"><h1>Practice exam</h1><p>10 random multiple-choice questions with instant feedback and explanations.</p><p class="mu sm">Unofficial practice questions. They are not actual TESDA exam items and do not guarantee passing.</p><div class="row"><button class="btn" onclick="startQ({k:'Practice',nav:'prac',fb:1,gen:()=>shuffle(allQ()).slice(0,10)})">Start practice</button><button class="btn gh" onclick="startWeak()">Review weak topics</button><button class="btn gh" onclick="go('flash')">Study flashcards</button></div></section>`},
 mock(){const h=S.sc.filter(s=>s.k=='Mock exam').slice(-5).reverse();return `<section class="card"><h1>Mock examination</h1><p>${allQ().length} questions, 50-minute timer, no feedback until you finish. Final score and full answer review at the end.</p><p class="mu sm">Unofficial practice only. Real assessments follow TESDA and your assessment center.</p><div class="row"><button class="btn" onclick="startQ({k:'Mock exam',nav:'mock',fb:0,time:3000,gen:()=>shuffle(allQ())})">Start mock exam</button></div></section><section class="card"><h3>Recent mock results</h3>${h.length?`<table>${h.map(s=>`<tr><td>${s.d}</td><td>${s.s}/${s.n}</td><td>${Math.round(s.s/s.n*100)}%</td></tr>`).join('')}</table>`:'<p class="mu">No mock exams yet.</p>'}</section>`},
 chk(){return `<h1>Practical assessment checklist</h1><section class="card"><b>${nChk()} of ${tChk} done</b>${bar(Math.round(nChk()/tChk*100))}<p class="mu sm">The exact assessment tasks depend on the applicable TESDA Training Regulations and your assessment center. Use this as a general guide and confirm with your center.</p></section>${C.map((s,i)=>`<section class="card"><h3>${s[0]}</h3>${s[1].map((x,j)=>`<label class="chk"><input type="checkbox" ${S.ck[i+'-'+j]?'checked':''} onchange="ck('${i}-${j}',this.checked)"><span>${x}</span></label>`).join('')}</section>`).join('')}<button class="btn gh" onclick="if(confirm('Clear all checklist items?')){S.ck={};save()}">Reset checklist</button>`},
 sign(){return `<h1>Road signs reviewer</h1><div class="tabs" role="tablist">${CATS.map(c=>`<button role="tab" aria-selected="${c==tab}" class="btn gh ${c==tab?'on':''}" onclick="tab='${c}';go('sign')">${c}</button>`).join('')}</div><div class="grid">${SIGNS.filter(s=>s[0]==tab).map(sgCard).join('')}</div><p class="mu sm">Graphics are simple original illustrations. Exact official designs and colors are in the DPWH/LTO sign manuals.</p>`},
-find(t){t=(t||'').toLowerCase();const ms=M.map((m,i)=>[m,i]).filter(([m])=>(m.t+m.s+m.e+m.n.join(' ')+m.q.map(q=>q[0]).join(' ')).toLowerCase().includes(t)),ss=SIGNS.filter(s=>(s[1]+s[3]).toLowerCase().includes(t));
+find(t){t=(t||'').toLowerCase().trim();const ms=M.map((m,i)=>[m,i]).filter(([m])=>(m.t+' '+m.s+' '+m.e+' '+m.n.join(' ')+' '+m.q.map(q=>q.join(' ')).join(' ')).toLowerCase().includes(t)),ss=SIGNS.filter(s=>(s[0]+' '+s[1]+' '+s[3]).toLowerCase().includes(t));
 return `<h1>Search results</h1>${ms.length?`<h3>Lessons</h3><div class="grid">${ms.map(([m,i])=>`<div class="card"><b>Module ${i+1}</b><p>${m.t}</p>${link('mod',i,'Open')}</div>`).join('')}</div>`:''}${ss.length?`<h3 style="margin-top:16px">Signs</h3><div class="grid">${ss.map(sgCard).join('')}</div>`:''}${ms.length+ss.length?'':'<p class="mu">Nothing found. Try another word.</p>'}`},
 prog(){const bad=Object.keys(S.st).filter(i=>{const x=S.st[i],n=x.c+x.w;return n&&x.c/n<.7&&M[i]}),qb=Object.keys(S.qb).map(qById).filter(Boolean);
-return `<h1>Progress and review</h1><div class="grid"><div class="card"><h3>Lessons completed</h3><p class="big">${nDone()}/${M.length}</p>${bar(pct())}</div><div class="card"><h3>Practical checklist</h3><p class="big">${nChk()}/${tChk}</p>${bar(Math.round(nChk()/tChk*100))}</div></div>
+return `<h1>Progress and review</h1><p class="mu sm">Progress is stored locally in this browser. Use the backup tools below to move it to another device.</p><div class="grid"><div class="card"><h3>Lessons completed</h3><p class="big">${nDone()}/${M.length}</p>${bar(pct())}</div><div class="card"><h3>Practical checklist</h3><p class="big">${nChk()}/${tChk}</p>${bar(Math.round(nChk()/tChk*100))}</div></div>
 <section class="card" style="margin-top:16px"><h3>Topics needing improvement</h3>${bad.length?bad.map(i=>`<div class="row"><span>${M[i].t} (${Math.round(S.st[i].c/(S.st[i].c+S.st[i].w)*100)}% correct)</span>${link('mod',i,'Review','gh')}</div>`).join(''):'<p class="mu">None yet. Topics under 70% correct appear here.</p>'}</section>
 <section class="card"><h3>Quiz and mock exam scores</h3>${S.sc.length?`<table>${S.sc.slice(-12).reverse().map(s=>`<tr><td>${s.d}</td><td>${s.k}</td><td>${s.s}/${s.n}</td><td>${Math.round(s.s/s.n*100)}%</td></tr>`).join('')}</table>`:'<p class="mu">No scores yet. Take a quiz to get started.</p>'}</section>
 <section class="card"><h3>Bookmarked questions</h3>${qb.length?qb.map(q=>`<div class="rev"><p><b>${q.t}</b></p><p class="gt">${q.o[q.a]}</p><p class="mu sm">${q.x}</p><button class="btn gh" onclick="bq('${q.id}')">★ Remove bookmark</button></div>`).join(''):'<p class="mu">No bookmarked questions yet.</p>'}</section>
-<button class="btn gh" onclick="if(confirm('Delete all saved progress on this device?')){S={done:{},bm:{},qb:{},sc:[],st:{},ck:{},goal:2,td:{d:'',n:0},dm:S.dm};save()}">Reset all progress</button>`},
-src(){return `<h1>Sources</h1><section class="card"><ul><li><a href="https://www.tesda.gov.ph/" target="_blank" rel="noopener">TESDA</a> – Training Regulations for Driving NC II</li><li><a href="https://lto.gov.ph/" target="_blank" rel="noopener">Land Transportation Office (LTO)</a></li><li><a href="https://www.officialgazette.gov.ph/" target="_blank" rel="noopener">Official Gazette</a> – RA 4136, Land Transportation and Traffic Code</li><li><a href="https://www.dpwh.gov.ph/" target="_blank" rel="noopener">DPWH</a> – road sign and pavement marking manuals</li></ul><p><b>Last updated:</b> 2026-10-14. Content was written from general knowledge of these materials and has not been re-verified line by line against the current documents. Requirements, speed limits, and assessment tasks can change or vary by center.</p><p>Always confirm with the current TESDA Training Regulations and your assessment center. This site is an unofficial study aid; its questions are original practice questions, not actual TESDA exam items, and passing is not guaranteed.</p></section>`}
+<section class="card"><h3>Back up your progress</h3><p class="mu sm">Your progress is saved only in this browser on this device. Export a backup before clearing browser data or switching devices.</p><div class="row"><button class="btn" onclick="exportProgress()">Download progress backup</button><button class="btn gh" onclick="document.getElementById('restoreProgressFile').click()">Restore backup</button><input id="restoreProgressFile" type="file" accept="application/json,.json" hidden onchange="importProgress(this)"></div></section>
+<button class="btn" onclick="startWeak()">Review weak topics</button> <button class="btn gh" onclick="go('flash')">Study flashcards</button> <button class="btn gh" onclick="if(confirm('Delete all saved progress on this device?')){S={done:{},bm:{},qb:{},sc:[],st:{},ck:{},goal:2,td:{d:'',n:0},dm:S.dm,lastMod:0};save()}">Reset all progress</button>`},
+flash(){const qs=allQ(),q=qs[((flashIndex%qs.length)+qs.length)%qs.length];return `<h1>Flashcards</h1><p class="mu">Review questions, answers, and explanations. Use these as quick recall practice.</p><section class="card flashcard"><div class="pill">Card ${((flashIndex%qs.length)+qs.length)%qs.length+1} of ${qs.length} · ${M[q.m].t}</div><div class="flashface"><p class="mu sm">${flashFlip?'ANSWER':'QUESTION'}</p><h2>${flashFlip?q.o[q.a]:q.t}</h2>${flashFlip?`<p>${q.x}</p>`:''}</div><div class="row"><button class="btn" onclick="flashFlip=!flashFlip;go('flash')">${flashFlip?'Show question':'Reveal answer'}</button><button class="btn gh" onclick="flashMove(-1)">← Previous</button><button class="btn gh" onclick="flashMove(1)">Next →</button><button class="btn gh" onclick="flashShuffle()">Shuffle</button></div><p class="mu sm">Practice questions are unofficial and are not actual TESDA exam items.</p></section><section class="card"><h3>How to study</h3><p>Try to answer before revealing the answer. Revisit questions you miss and read the explanation.</p></section>`},
+src(){return `<h1>Sources</h1><section class="card"><ul><li><a href="https://www.tesda.gov.ph/Downloadables/TR%20-%20DRIVING%20NC%20II.pdf" target="_blank" rel="noopener">TESDA Driving NC II Training Regulations (PDF)</a></li><li><a href="https://www.tesda.gov.ph/Download/Training_Regulations?SearchTitle=driving&amp;Searchcat=Training+Regulations" target="_blank" rel="noopener">TESDA Training Regulations directory</a></li><li><a href="https://lto.gov.ph/wp-content/uploads/2023/10/FDM-Vol.-1-2nd-Edition.pdf" target="_blank" rel="noopener">LTO Driver’s Manual, Volume 1 (PDF)</a></li><li><a href="https://portal.lto.gov.ph/ords/f?p=ELEARNING:HOME" target="_blank" rel="noopener">LTO LTMS eLearning</a></li><li><a href="https://www.officialgazette.gov.ph/" target="_blank" rel="noopener">Official Gazette</a> – RA 4136, Land Transportation and Traffic Code</li><li><a href="https://www.dpwh.gov.ph/" target="_blank" rel="noopener">DPWH</a> – road sign and pavement marking manuals</li></ul><p><b>Last updated:</b> 2026-10-14. Content was written from general knowledge of these materials and has not been re-verified line by line against the current documents. Requirements, speed limits, and assessment tasks can change or vary by center.</p><p>Always confirm with the current TESDA Training Regulations and your assessment center. This site is an unofficial study aid; its questions are original practice questions, not actual TESDA exam items, and passing is not guaranteed.</p></section>`}
 };
 const sgCard=s=>`<div class="card sg">${SG[s[2]]}<b>${s[1]}</b><p class="mu sm">${s[3]}</p></div>`;
 function find(t){if(t.trim().length>1)go('find',t.trim());else if(cur=='find')go('home')}
@@ -165,6 +212,33 @@ function goal(d){S.goal=Math.max(1,Math.min(10,S.goal+d));save()}
 function ck(id,v){v?S.ck[id]=1:delete S.ck[id];const y=scrollY;save();scrollTo(0,y)}
 function bq(id){S.qb[id]?delete S.qb[id]:S.qb[id]=1;save()}
 function qm(i){startQ({k:'Quiz: '+M[i].t,nav:'mods',fb:1,gen:()=>allQ().filter(q=>q.m==i)})}
+
+function flashMove(d){const n=allQ().length;flashIndex=(flashIndex+d+n)%n;flashFlip=false;go('flash')}
+function flashShuffle(){flashIndex=Math.floor(Math.random()*allQ().length);flashFlip=false;go('flash')}
+function startWeak(){const weak=Object.keys(S.st).map(Number).filter(i=>M[i]&&S.st[i].c+S.st[i].w>0&&S.st[i].c/(S.st[i].c+S.st[i].w)<.7);const pool=weak.length?allQ().filter(q=>weak.includes(q.m)):allQ();startQ({k:weak.length?'Weak-topic review':'Review practice',nav:'prac',fb:1,gen:()=>shuffle(pool).slice(0,Math.min(15,pool.length))})}
+
+/* ===== PROGRESS BACKUP ===== */
+function exportProgress(){
+  const payload={app:'DriveReady PH',version:1,exportedAt:new Date().toISOString(),progress:S};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='driveready-ph-progress-'+today()+'.json';document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function importProgress(input){
+  const file=input.files&&input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{
+    const data=JSON.parse(reader.result),p=data&&data.progress;
+    if(!p||typeof p!=='object'||!p.done||!p.bm||!p.qb||!Array.isArray(p.sc)||!p.st||!p.ck)throw new Error('invalid');
+    if(!confirm('Restore this backup? It will replace the progress currently saved in this browser.')){input.value='';return;}
+    S={done:p.done,bm:p.bm,qb:p.qb,sc:p.sc.slice(-50),st:p.st,ck:p.ck,goal:Math.max(1,Math.min(10,Number(p.goal)||2)),td:p.td||{d:'',n:0},dm:p.dm?1:0,lastMod:Number.isInteger(p.lastMod)?p.lastMod:0};
+    save();alert('Progress restored successfully.');
+  }catch(e){alert('That backup file could not be read. Choose a DriveReady PH progress backup JSON file.');}
+  input.value='';};
+  reader.onerror=()=>{alert('Could not read the selected file. Please try again.');input.value='';};
+  reader.readAsText(file);
+}
 
 /* ===== QUIZ ENGINE ===== */
 const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
