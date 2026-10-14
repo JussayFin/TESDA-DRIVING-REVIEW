@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DriveReady PH – TESDA Driving NC II Study Companion</title>
+<meta name="description" content="Unofficial study companion for TESDA Driving NC II in the Philippines.">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<header class="top">
+<button id="tg" aria-label="Collapse or expand sidebar" onclick="document.body.classList.toggle('min')">☰</button>
+<b class="logo">🚗 DriveReady PH</b>
+<input id="q" type="search" placeholder="Search lessons and signs" aria-label="Search lessons and signs" oninput="find(this.value)">
+<span class="pill" title="Overall study progress">Progress <b id="hp">0%</b></span>
+<button aria-label="Toggle dark mode" onclick="S.dm=S.dm?0:1;save()">🌓</button>
+<button aria-label="Profile and progress" onclick="go('prog')">👤</button>
+</header>
+<nav class="side" id="nav" aria-label="Main navigation"></nav>
+<main id="v" tabindex="-1"><noscript>Please enable JavaScript to use this study site.</noscript></main>
+<script src="script.js"></script>
+</body></html>
