@@ -1,5 +1,5 @@
-:root{--bg:#f1f2f4;--c:#fff;--ink:#111;--mu:#6b7280;--ln:#e5e7eb;--ac:#2563eb;--ok:#15803d;--bad:#b91c1c;--sh:0 2px 10px rgba(0,0,0,.06)}
-[data-dark="1"]{--bg:#0f1115;--c:#1a1d23;--ink:#f3f4f6;--mu:#9ca3af;--ln:#2b2f38;--ac:#60a5fa;--ok:#4ade80;--bad:#f87171;--sh:none}
+:root{--bg:#fff;--c:#fff;--ink:#111;--mu:#737373;--ln:#e5e5e5;--ac:#111;--ok:#15803d;--bad:#b91c1c;--sh:none}
+[data-dark="1"]{--bg:#101010;--c:#181818;--ink:#f5f5f5;--mu:#aaa;--ln:#303030;--ac:#f5f5f5;--ok:#4ade80;--bad:#f87171;--sh:none}
 *{box-sizing:border-box}
 body{margin:0;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);display:grid;grid-template:"h h" 60px "s m" 1fr/208px 1fr;min-height:100vh}
 body.min{grid-template-columns:64px 1fr}
@@ -12,12 +12,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--ac);outline-off
 .pill{background:var(--bg);border:1px solid var(--ln);border-radius:20px;padding:2px 10px;font-size:14px;white-space:nowrap}
 .side{grid-area:s;background:var(--c);border-right:1px solid var(--ln);padding:10px 8px;display:flex;flex-direction:column;gap:2px}
 .side button{display:flex;gap:10px;align-items:center;background:none;border:0;border-radius:10px;padding:10px;text-align:left}
-.side button.on{background:var(--ink);color:var(--bg)}
+.side button.on{background:#111;color:#fff;border-radius:24px}
 .side em{font-style:normal}
 body.min .side em{display:none}
 main{grid-area:m;padding:20px;width:100%;max-width:1040px;min-width:0}
 h1,h2,h3{line-height:1.25;margin:0 0 10px}
-.card{background:var(--c);border-radius:16px;box-shadow:var(--sh);border:1px solid var(--ln);padding:18px;margin-bottom:16px}
+.card{background:var(--c);border-radius:14px;box-shadow:none;border:1px solid var(--ln);padding:18px;margin-bottom:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
 .grid .card{margin:0}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
@@ -50,46 +50,24 @@ a{color:var(--ac)}
 @media(max-width:760px){
 body,body.min{grid-template:"h" 60px "m" 1fr/1fr}
 #tg,.pill{display:none}
-.side{position:fixed;left:0;right:0;bottom:0;top:auto;flex-direction:row;overflow-x:auto;border-right:0;border-top:1px solid var(--ln);z-index:6;padding:4px}
-.side button{flex-direction:column;gap:0;padding:6px 10px;font-size:11px;min-width:64px;align-items:center}
+.top{background:var(--c);border-bottom:1px solid var(--ln);box-shadow:none}
+.side{position:fixed;left:0;right:0;bottom:0;top:auto;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;white-space:nowrap;border-right:0;border-top:1px solid var(--ln);z-index:6;padding:8px 10px;background:var(--c);gap:6px;scrollbar-width:thin}
+.side button{flex:0 0 auto;flex-direction:column;gap:2px;padding:8px 13px;font-size:16px;line-height:1.25;min-width:88px;min-height:76px;align-items:center;justify-content:center;border-radius:24px}
+.side button.on{background:#111;color:#fff;border-radius:24px}
+.side button em{font-size:28px;line-height:1.1}
 body.min .side em{display:inline}
-main{padding:14px 14px 90px}
+main{padding:18px 14px 110px}
+}
+@media(min-width:761px){
+.side{border-right:0;border-bottom:1px solid var(--ln);box-shadow:none}
+.side button{border-radius:24px}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* Flashcards and mobile refinements */
 .flashface{min-height:210px;display:flex;flex-direction:column;justify-content:center;padding:20px 6px}.flashface h2{font-size:clamp(1.25rem,3vw,1.8rem);margin:8px 0}.flashcard{max-width:760px}.side button{white-space:nowrap}.sg{min-height:126px}.sg b{display:block;margin-top:4px}.sg p{margin:6px 0 0}
 @media(max-width:480px){.top{gap:6px;padding:0 8px}.logo{font-size:14px}#q{padding:7px 9px;font-size:14px}.top button{font-size:17px;padding:4px}.card{padding:14px;border-radius:13px}.grid{grid-template-columns:1fr}.btn{padding:9px 12px}.flashface{min-height:180px}}
-...",["A dipstick","The horn","The wiper","The mirror"],0,"Park level, engine off, wipe and reinsert the dipstick."],
-["If the brake pedal feels spongy you should...",["Keep driving","Have the brakes checked before driving","Ignore it","Add air freshener"],1,"It may mean low fluid or air in the lines."],
-["Coolant should be checked when the engine is...", ["Cool", "Very hot", "Running at high speed", "Overheating"], 0, "Opening a hot radiator cap can cause burns."],
-["Worn wiper blades should be...", ["Replaced", "Ignored", "Painted", "Removed only"], 0, "Good wipers are needed for visibility in rain."]]},
-{t:"Emergency procedures and hazard awareness",s:"Stay calm in emergencies. Make the vehicle visible and protect yourself and others.",n:["Tire blowout: grip the wheel, ease off the accelerator, brake gently","Breakdown: hazard lights, warning device, move to a safe place","Give way to ambulances, fire trucks, and police with sirens","Stay calm and keep your distance"],e:"On a flooded road during the rainy season, avoid deep water and do not stop in the middle of it.",q:[
-["During a tire blowout you should...",["Brake hard","Grip the wheel and ease off the accelerator","Steer sharply","Accelerate"],1,"Hard braking or sharp steering can cause loss of control."],
-["If your vehicle breaks down on the road...",["Switch on hazard lights and place a warning device","Leave it dark","Stand in traffic","Remove the plate"],0,"Make the vehicle visible and move to safety."],
-["An ambulance with siren approaches. You should...",["Safely move aside and give way","Speed up","Stop in the middle","Block it"],0,"Give way without causing a crash."],
-["If the brakes seem to fail you should...", ["Pump the brakes, downshift, and use the handbrake gradually", "Jump out of the car", "Accelerate", "Close your eyes"], 0, "Slow the vehicle in steps and steer to a safe place."],
-["Hazard lights are used when...", ["Your vehicle is stopped and a danger to others", "Driving normally", "Overtaking", "Parking at home"], 0, "They warn others of a breakdown or danger."]]},
-{t:"Practical assessment checklist and common mistakes",s:"Calm, consistent habits (mirror, signal, observe) are easy to show and help in any assessment.",n:["Do cockpit checks every time: seat, mirrors, seatbelt","Signal and observe before every move","Come to a full stop at stop signs","Avoid stalling, rolling back, and hitting cones; finish with a safe shutdown"],e:"Practice the same routine on every drive so it becomes automatic on assessment day.",q:[
-["A common practical mistake is...",["Skipping mirror and seatbelt checks","Signaling early","Observing","Smooth braking"],0,"Always do cockpit checks before moving."],
-["At a stop sign you should...",["Come to a full stop","Roll through","Honk and go","Speed up"],0,"Full stop, observe, then proceed when safe."],
-["When the drive ends you should...",["Secure the car: handbrake, engine off","Leave it running","Leave lights on","Abandon it"],0,"Safe shutdown is part of good practice."],
-["Which shows good practical driving habits?", ["Smooth control and constant observation", "Fast driving", "Ignoring signals", "Skipping checks"], 0, "Safe, smooth, observant driving is what matters."],
-["If you stall during the practical you should...", ["Stay calm, secure the car, and restart safely", "Panic", "Leave the car", "Hit the accelerator"], 0, "Set the handbrake, check surroundings, then restart."]]}
-];
-// Supplemental original practice questions. These are study aids, not official exam items.
-const EXTRA=[
-[
-["What should you do if an instruction from another road user conflicts with a traffic sign?",["Follow the other road user", "Obey the applicable sign and law, proceeding safely", "Ignore both", "Stop permanently"],1,"Follow applicable traffic controls and proceed safely; seek clarification from an authorized instructor when learning."],
-["Before a long drive, what is a sensible preparation?",["Skip the vehicle check", "Plan the route, rest, and inspect the vehicle", "Drive until tired", "Rely only on the fuel gauge"],1,"Plan ahead, be rested, and inspect the vehicle before leaving."]
-],
-[
-["At a STOP sign, when may you proceed?",["After slowing slightly", "After a complete stop and checking that it is safe", "If the road looks empty from far away", "Only after honking"],1,"Come to a complete stop, observe, and proceed only when safe."],
-["A traffic enforcer directs you differently from a traffic light. What is the safest action?",["Ignore the enforcer", "Follow the authorized enforcer's direction safely", "Follow whichever is faster", "Close your eyes and proceed"],1,"Authorized traffic directions should be followed safely." ]
-],
-[
-["Why should you leave an escape space around your vehicle?",["To encourage others to cut in", "To give yourself room to react to hazards", "To drive faster", "To avoid checking mirrors"],1,"Space around the vehicle gives you options if traffic changes suddenly."],
-["A motorcycle is in your blind spot. Before changing lanes, you should...",["Move immediately", "Check the blind spot and wait until the lane is clear", "Flash high beams and move", "Rely only on the rear-view mirror"],1,"Mirrors do not show every area; check the blind spot before moving." ]
+ every area; check the blind spot before moving." ]
 ],
 [
 ["A tire has a visible bulge. What should you do?",["Ignore it until the next service", "Avoid driving on it and arrange a safe repair or replacement", "Inflate it beyond the recommended pressure", "Drive faster to test it"],1,"A bulge can indicate tire damage and risk of failure."],
